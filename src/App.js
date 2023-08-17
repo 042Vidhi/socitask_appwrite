@@ -6,6 +6,8 @@ import ChatWindowUser from './pages/ChatWindowUser';
 import PostWindow from './pages/PostWindow';
 import Profile from './pages/Profile';
 import Notifications from './pages/Notifications';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
       
         <Routes>
           <Route path="/" element={<Home/>} />
+          <Route path="/login" element={<Login/>} />
+          <Route path="/register" element={<Register/>} />
           <Route path="/chat" element={<ChatWindow/>} />
           <Route path="/notifications" element={<Notifications/>} />
           <Route path="/profile" element={<Profile/>}/>

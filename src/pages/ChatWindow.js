@@ -1,6 +1,5 @@
 import React from 'react';
 import UsersChat from '../components/UsersChat';
-import SendIcon from '@mui/icons-material/Send';
 
 function ChatWindow() {
   return (

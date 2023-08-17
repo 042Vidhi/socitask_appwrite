@@ -1,23 +1,41 @@
 import React from 'react';
 import { useState } from 'react';
+import { database, DATABASE_ID, COLLECTION_ID_POSTS } from '../appwriteConfig';
+
 
 function CommentModal({
   showCommentModal,
   closeCommentModal,
+  parentPostId
 }) {
 
     const [commentText, setCommentText] = useState('');
-
-    //take current user from context
+    //take current user from context but for now use a dummy user
     const user = {
         name: 'dummyUser',
         username: 'username',
         profilePic: 'https://i.pinimg.com/736x/ae/fb/32/aefb32e7f7812102cf2e5756169b13db.jpg'
     }
-    const handleCommentSubmit = () => {
-        console.log(commentText);
-        setCommentText('');
-        closeCommentModal();
+    const handleCommentSubmit = async () => {
+        try{
+          let response = await database.getDocument(DATABASE_ID, COLLECTION_ID_POSTS, parentPostId);
+ 
+
+           // Add the new comment to the comments array
+          response.comments.push(
+             commentText
+          );
+
+          // Update the post with the new comments array
+           await database.updateDocument(DATABASE_ID, COLLECTION_ID_POSTS, parentPostId);
+
+          setCommentText('');
+          closeCommentModal();
+          window.location.reload();
+        }
+        catch(error){
+            console.error('Error posting comment:', error);
+        }
     }
 
 

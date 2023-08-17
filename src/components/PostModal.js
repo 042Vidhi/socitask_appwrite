@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Avatar } from '@mui/material';
+import { database, DATABASE_ID, COLLECTION_ID_POSTS } from '../appwriteConfig';
+import {ID} from 'appwrite'
 
 export default function PostModal({ onClose }) {
     //take current user data from context
@@ -9,16 +11,31 @@ export default function PostModal({ onClose }) {
       profilePic: 'https://i.pinimg.com/736x/ae/fb/32/aefb32e7f7812102cf2e5756169b13db.jpg'
     };
   
-  const [postcontent, setpostcontent] = useState({
-    posttext: '',
-    postId: '',
-    userId: user.userId,
-  });
+  const [postcontent, setpostcontent] = useState('');
 
 
-  const handleSave = () => {
-    console.log(postcontent);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    //post only if there is content
+    if(postcontent === '') return;
+    
+    var date = new Date(Date.now());
+    
+    
+    let payload = {
+      text: postcontent,
+      userId: user.userId,
+      time: date.toISOString(),
+    };
+
+    let response = await database.createDocument(DATABASE_ID, COLLECTION_ID_POSTS,ID.unique(),payload
+      );
+
+    console.log(response);
+    setpostcontent('');
     onClose();
+    window.location.reload();
   };
 
   return (
@@ -34,16 +51,16 @@ export default function PostModal({ onClose }) {
         <textarea
           className="w-full h-56 p-2 rounded-md resize-none "
           placeholder="Write your post here..."
-          value={postcontent.posttext}
-          onChange={(e) => setpostcontent({ ...postcontent, posttext: e.target.value })}
+          value={postcontent}
+          onChange={(e) => setpostcontent(e.target.value)}
 
         />
         <div className="flex justify-end mt-4">
           <button
             className="px-4 py-2 mr-2 bg-quinaryAccent text-white rounded-md hover:bg-senaryHover"
-            onClick={handleSave}
+            onClick={handleSubmit}
           >
-            Save
+            Post
           </button>
           <button
             className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400"

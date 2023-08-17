@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { Avatar, Icon } from '@mui/material';
+import { Avatar } from '@mui/material';
 
 function Navbar() {
   const [isAccountDropdownOpen, setIsAccountDropdownOpen] = useState(false);
