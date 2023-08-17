@@ -10,7 +10,7 @@ Before you begin, ensure you have the following:
 - Node.js installed on your system. You can download it from [here](https://nodejs.org/).
 - You can set up an Appwrite instance locally or use the hosted version.
 I used the hosted version.
- Get started with Appwrite [here](https://appwrite.io/docs/getting-started).
+ Get started with Appwrite [here](https://appwrite.io/docs/getting-started-for-web).
 
 ## Getting Started
 
