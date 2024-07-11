@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { account } from '../appwriteConfig';
+import { Link } from 'react-router-dom';
 
 function Login() {
   const [loginInput, setLoginInput] = useState({
@@ -22,7 +23,11 @@ function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-700 ">
+    <div className='min-h-screen bg-slate-800 flex flex-col'>
+    <Link className='text-white font-semibold text-xl p-4' to="/">
+      SociWall
+    </Link>
+    <div className="flex-grow flex items-center justify-center">
       <div className="max-w-md w-full p-6 bg-primaryBackground shadow-lg rounded-lg">
         <h2 className="text-2xl font-semibold mb-4 text-slate-50">Log in</h2>
         <form>
@@ -67,6 +72,7 @@ function Login() {
           </p>
         </form>
       </div>
+    </div>
     </div>
   );
 }

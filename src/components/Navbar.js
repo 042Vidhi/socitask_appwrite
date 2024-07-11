@@ -24,7 +24,7 @@ function Navbar() {
   return (
     <div className="bg-septenaryHover2 text-white relative">
       <div className="flex justify-between items-center px-4 py-2">
-        <div className="text-xl font-semibold">Socitask</div>
+        <div className="text-xl font-semibold">SociWall</div>
         <div className="flex space-x-4">
           <div className="relative">
             <button onClick={toggleNotificationsDropdown} className="hover:text-quinaryAccent">
